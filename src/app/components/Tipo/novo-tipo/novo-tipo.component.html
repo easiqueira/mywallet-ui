@@ -1,0 +1,78 @@
+<div *ngIf="!formulario">
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+  </div>
+  
+  <div *ngIf="formulario" class="divCard">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><h3>Cadastro Tipo de Movimentação</h3></mat-card-title>
+      </mat-card-header>
+  
+      <form [formGroup]="formulario" (ngSubmit)="EnviarFormulario()">
+        <div class="cardErros" *ngIf="erros.length > 0">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Algo deu errado</mat-card-title>
+            </mat-card-header>
+  
+            <mat-divider></mat-divider>
+  
+            <mat-card-content>
+              <div class="divErros">
+                <h4 *ngFor="let erro of erros" class="textoErros">
+                  {{ erro }}
+                </h4>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+  
+        <mat-card-content>
+          <div>
+            <mat-form-field>
+              <mat-label>Nome</mat-label>
+              <input
+                type="text"
+                formControlName="nome"
+                matInput
+                placeholder="Digite o nome do tipo de movimentação"
+                required
+              />
+              <mat-error
+                *ngIf="propriedade.nome.touched && propriedade.nome.invalid"
+              >
+                <sup>*</sup> Digite o nome do tipo de movimentação
+              </mat-error>
+              <mat-error *ngIf="propriedade.nome.errors?.minlength">
+                <sup>*</sup> Use mais caracteres
+              </mat-error>
+  
+              <mat-error *ngIf="propriedade.nome.errors?.maxlength">
+                <sup>*</sup> Use menos caracteres
+              </mat-error>
+            </mat-form-field>
+          </div>
+  
+        </mat-card-content>
+  
+        <mat-divider></mat-divider>
+  
+        <mat-card-actions>
+          <div>
+            <button
+              type="submit"
+              mat-stroked-button
+              color="primary"
+              [disabled]="formulario.invalid"
+            >
+              Salvar
+            </button>
+            <button type="button" mat-stroked-button (click)="VoltarListagem()">
+              Voltar
+            </button>
+          </div>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+  

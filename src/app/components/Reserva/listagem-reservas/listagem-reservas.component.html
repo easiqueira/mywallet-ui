@@ -1,0 +1,96 @@
+<div *ngIf="!reservas">
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+  </div>
+  
+  <div class="dadosReserva">
+    <div class="cabecalho">
+      <mat-grid-list cols="2" rowHeight="50px">
+        <mat-grid-tile>
+          <h2 class="titulo">Reservas Cadastradas</h2>
+        </mat-grid-tile>
+  
+        <mat-grid-tile>
+          <button
+            mat-stroked-button
+            color="primary"
+            routerLink="/reservas/novareserva"
+          >
+            Nova Reserva
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+  
+      <mat-divider></mat-divider>
+  
+      <div class="divAutoComplete">
+        <form>
+          <mat-form-field class="autoCompleteInput">
+            <input type="text" placeholder="Digite o que você procura" matInput [formControl]="autoCompleteInput" [matAutocomplete]="auto"/>
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" >
+              <mat-option *ngFor="let nome of nomesCategorias | async" [value]="nome">
+                {{nome}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+  
+      <table
+        mat-table
+        matSort
+        [dataSource]="reservas"
+        class="mat-elevation-z8 tabela"
+        *ngIf="reservas"
+      >
+  
+        <ng-container matColumnDef="descricao">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</th>
+          <td mat-cell *matCellDef="let reserva">{{ reserva.descricao }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="categoria">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoria</th>
+          <td mat-cell *matCellDef="let reserva">
+            <mat-icon>{{ reserva.categoria.icone }}</mat-icon>
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="valor">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
+          <td mat-cell *matCellDef="let reserva">{{ reserva.valor }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="data">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+          <td mat-cell *matCellDef="let reserva">
+            {{ reserva.dia }} de {{ reserva.mes.nome }} de {{ reserva.ano }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Ações</th>
+          <td mat-cell *matCellDef="let reserva">
+            <button
+              mat-mini-fab
+              color="primary"
+              [routerLink]="['/reservas/atualizarreserva', reserva.reservaId]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" (click)="AbrirDialog(reserva.reservaId, reserva.valor)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+  
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 15, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </div>
+  
