@@ -2,6 +2,7 @@ import { Funcao } from './../models/Funcao';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,7 +15,9 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class FuncoesService {
-url = 'api/Funcoes';
+
+  //url = 'api/Funcoes';
+  url = `${environment.mainUrlApi}api/Funcoes`;
 
   constructor(private http: HttpClient) {}
 

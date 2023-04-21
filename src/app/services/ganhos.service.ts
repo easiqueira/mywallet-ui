@@ -2,6 +2,7 @@ import { Ganho } from './../models/Ganho';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 
 const httpOptions = {
@@ -17,7 +18,8 @@ const httpOptions = {
 })
 export class GanhosService {
 
-url = 'api/Ganhos';
+//url = 'api/Ganhos';
+url = `${environment.mainUrlApi}api/Ganhos`;
 
   constructor(private http: HttpClient) { }
 

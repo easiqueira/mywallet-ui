@@ -2,6 +2,7 @@ import { Reserva } from './../models/Reserva';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,7 +16,8 @@ const httpOptions = {
 })
 export class ReservasService {
 
-url = 'api/Reservas';
+//url = 'api/Reservas';
+url = `${environment.mainUrlApi}api/Reservas`;
 
   constructor(private http: HttpClient) { }
 

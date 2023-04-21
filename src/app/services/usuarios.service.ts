@@ -5,6 +5,7 @@ import { Usuario } from './../models/Usuario';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,7 +24,9 @@ const httpOptions2 = {
   providedIn: 'root',
 })
 export class UsuariosService {
-  url = 'api/Usuarios';
+
+  //url = 'api/Usuarios';
+  url = `${environment.mainUrlApi}api/Usuarios`;
 
   constructor(private http: HttpClient) {}
 

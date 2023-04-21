@@ -2,6 +2,7 @@ import { Despesa } from './../models/Despesa';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,7 +16,8 @@ const httpOptions = {
 })
 export class DespesasService {
 
-url = 'api/Despesas';
+//url = 'api/Despesas';
+  url = `${environment.mainUrlApi}api/Despesas`;
 
   constructor(private http: HttpClient) { }
 

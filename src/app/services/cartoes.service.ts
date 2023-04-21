@@ -2,6 +2,7 @@ import { Cartao } from './../models/Cartao';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,7 +15,9 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class CartoesService {
-  url = 'api/Cartoes';
+
+  url = `${environment.mainUrlApi}api/Cartoes`;
+  //url = 'api/Cartoes';
 
   constructor(private http: HttpClient) {}
 
@@ -25,7 +28,7 @@ export class CartoesService {
 
   ObterCartoesPeloUsuarioId(usuarioId: string): Observable<Cartao[]> {
     const apiUrl = `${this.url}/ObterCartoesPeloUsuarioId/${usuarioId}`;
-    return this.http.get<Cartao[]>(apiUrl);
+    return this.http.get<Cartao[]>(apiUrl, httpOptions);
   }
 
   NovoCartao(cartao: Cartao): Observable<any> {

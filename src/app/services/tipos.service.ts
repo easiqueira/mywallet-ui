@@ -2,6 +2,7 @@ import { Tipo } from './../models/Tipo';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,7 +15,8 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class TiposService {
-  url: string = 'api/TiposMovimentacao';
+  //url: string = 'api/TiposMovimentacao';
+  url = `${environment.mainUrlApi}api/TiposMovimentacao`;
 
   constructor(private http: HttpClient) {}
 

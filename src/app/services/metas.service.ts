@@ -2,6 +2,7 @@ import { Meta } from './../models/Meta';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,7 +15,8 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class MetasService {
-  url = 'api/Metas';
+  //url = 'api/Metas';
+  url = `${environment.mainUrlApi}api/Metas`;
 
   constructor(private http: HttpClient) {}
 
