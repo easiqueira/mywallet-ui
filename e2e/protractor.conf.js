@@ -17,7 +17,7 @@ exports.config = {
   },
   directConnect: true,
   //baseUrl: 'http://localhost:4200/',
-  baseUrl: 'http://tccmywallet.kinghost.net/',
+  baseUrl: 'https://tccmywallet.com.br/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

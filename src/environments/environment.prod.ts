@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  mainUrlApi: 'http://tccmywallet.kinghost.net/'
+  mainUrlApi: 'https://tccmywallet.com.br/'
   //mainUrlApi: 'https://localhost:44397/'
 };

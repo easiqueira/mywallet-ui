@@ -167,7 +167,7 @@ export function PegarTokenUsuario() {
     JwtModule.forRoot({
       config: {
         tokenGetter: PegarTokenUsuario,
-        allowedDomains: ['localhost:5000', 'http://tccmywallet.kinghost.net', 'localhost:44397'],
+        allowedDomains: ['localhost:5000','https://tccmywallet.com.br', 'http://tccmywallet.com.br', 'http://tccmywallet.kinghost.net', 'localhost:44397'],
         disallowedRoutes: [],
       },
     }),
